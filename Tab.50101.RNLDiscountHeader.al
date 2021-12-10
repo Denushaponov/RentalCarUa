@@ -33,6 +33,8 @@ table 50101 "RNL Discount Header"
         {
             Caption = 'Percent';
             DataClassification = CustomerContent;
+            MinValue = 0.01;
+            MaxValue = 100;
         }
           field(100; "No. Series"; Code[20])
         {
