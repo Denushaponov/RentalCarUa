@@ -2,9 +2,9 @@ page 50102 "RNL Discount List"
 {
     
     ApplicationArea = All;
-    Caption = 'Discount List';
+    Caption = 'Discounts';
     PageType = List;
-    SourceTable = "RNL Discount Header";
+    SourceTable = "RNL Discount";
     UsageCategory = Lists;
     Editable=false;
     CardPageId="RNL Discount Card";
@@ -36,12 +36,12 @@ page 50102 "RNL Discount List"
 
     actions
 {
-area(Navigation)
-{
-action(DiscountCard)
-{
-ApplicationArea = All;
-Caption = 'Discount Card';
+    area(Navigation)
+    {
+        action(DiscountCard)
+        {
+            ApplicationArea = All;
+            Caption = 'Discount Card';
 Image = Customer;
 Promoted = true;
 PromotedCategory = Process;

@@ -1,5 +1,6 @@
-table 50101 "RNL Discount Header"
+table 50101 "RNL Discount"
 {
+    // Rename to Header
     Caption = 'Discount Header';
     DataClassification = CustomerContent;
 

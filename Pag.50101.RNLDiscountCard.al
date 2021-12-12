@@ -2,8 +2,10 @@ page 50101 "RNL Discount Card"
 {
     
     Caption = 'Discount Card';
-    PageType = Document;
-    SourceTable = "RNL Discount Header";
+
+    // change to card
+    PageType = Card;
+    SourceTable = "RNL Discount";
     
     layout
     {

@@ -6,7 +6,7 @@ page 50100 "RNL Discount Setup"
     UsageCategory = Administration;
     SourceTable = "RNL Discount Setup";
     Caption = 'Discount Setup';
-    InsertAllowed=false;    
+    InsertAllowed= false;    
     DeleteAllowed = false;
     
     layout

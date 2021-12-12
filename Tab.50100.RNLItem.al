@@ -1,5 +1,6 @@
-tableextension 50100 "RNL Rental Car Ext" extends Item
+tableextension 50100 "RNL Item" extends Item
 {
+    Caption= 'Rental Car Extension';
     fields
     {
         field(50100; "RNL Item No."; Code[20])
