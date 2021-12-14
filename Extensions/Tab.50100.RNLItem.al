@@ -3,11 +3,7 @@ tableextension 50100 "RNL Item" extends Item
     Caption= 'Rental Car Extension';
     fields
     {
-        field(50100; "RNL Item No."; Code[20])
-        {
-            Caption = 'Item No.';
-            DataClassification = CustomerContent;
-        }
+        
         field(50101; "RNL Model"; Code[20])
         {
             Caption = 'Model';
@@ -32,6 +28,8 @@ tableextension 50100 "RNL Item" extends Item
         {
             Caption = 'Discount';
             DataClassification = CustomerContent;
+            TableRelation ="RNL Discount".Percent where (Type=filter(Car));
+            ValidateTableRelation = false;
         }
        
     }

@@ -42,14 +42,14 @@ page 50102 "RNL Discount List"
         {
             ApplicationArea = All;
             Caption = 'Discount Card';
-Image = Customer;
-Promoted = true;
-PromotedCategory = Process;
-RunObject = page "RNL Discount Card";
-RunPageLink = "Code" = field("Code");
-ToolTip = 'Opens discount card.';
-}
-}
+            Image = Customer;
+            Promoted = true;
+            PromotedCategory = Process;
+            RunObject = page "RNL Discount Card";
+            RunPageLink = "Code" = field("Code");
+            ToolTip = 'Opens discount card.';
+        }
+    }
 }
     
 }
