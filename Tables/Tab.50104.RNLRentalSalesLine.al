@@ -14,33 +14,118 @@ table 50104 "RNL Rental Sales Line"
         {
             Caption = 'Line No.';
             DataClassification = CustomerContent;
-             
         }
         field(3; "Item No."; Code[20])
         {
             Caption = 'Item No.';
             DataClassification = CustomerContent;
             TableRelation = Item;
-           // Как заполнить поле модели в зависимости от выбора здесь 
-           trigger OnValidate()
-           var
-               Item: Record Item;
-           begin
-               if "Item No." <> '' then begin  
-                   Rec.Validate("Car Model", Item."RNL Model");
+            
+            trigger OnValidate()
+            var 
+            Item: Record "Item";
+            begin
+                if ("Item No." <> xRec."Item No.") then begin 
                   
-               end
-           end;
+                    Item.SetRange("No.", "Item No.");
+                    Item.FindFirst();
+                    "Price Per Day":= Item."RNL Price Per Day";
+                    "Discount":=Item."RNL Discount";
+                end;
+            end;
         }
         field(4; "Car Model"; Text[50])
         {
             Caption = 'Car Model';
-            DataClassification = CustomerContent;
+            Editable = false;
             // Добавить логику заполнения поля модели
-            Editable=false;
-           
-        
+            FieldClass = FlowField;
+            CalcFormula=Lookup(Item."RNL Model" WHERE ("No."=FIELD("Item No.")));
+        }
 
+        field(5; "Price Per Day"; Decimal)
+        {
+            Caption = 'Represent price of the car for one rental day';
+            Editable = false;
+            DataClassification = CustomerContent;
+           // FieldClass =FlowField;
+           // CalcFormula=lookup(Item."RNL Price Per Day" where ("No."=field("Item No.")));
+
+        }
+
+        field(50; Discount; Decimal)
+        {
+            Caption = 'Represents selected car discount ';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+
+        field(75; "Final Price"; Decimal)
+        {
+            Caption = 'Price including car discount';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+
+        field(100; "Rental Starting Date"; Date)
+        {
+            Caption = 'The Date when renting starts';
+            DataClassification = CustomerContent;
+           trigger OnValidate()
+           var
+               CurrentDate: Date;
+               CannotSelectPastError: Text;
+                 StartingDateIsGreaterError: Text;
+           begin
+              StartingDateIsGreaterError:='Your starting date is greater than ending date';
+               CannotSelectPastError:='You have selected day from the past';
+               CurrentDate:= Today();  
+               if ("Rental Starting Date"< CurrentDate) then begin 
+               Error(CannotSelectPastError);
+               "Rental Starting Date":=Today();
+               end;
+
+                     // Checking if starting date is greater than ending date
+                if("Rental Ending Date"<"Rental Starting Date") then begin
+                    // Messaging
+                    Error(StartingDateIsGreaterError);
+                    // Setting that starting date to normal
+
+                end;
+
+                 // Checking if ending date  Today or less
+             // if false
+               if ("Rental Ending Date">"Rental Starting Date") then begin end
+               // if true
+             else begin 
+               Error(CannotSelectPastError);
+               
+             end;
+           end;
+        }
+
+        field(150; "Rental Ending Date"; Date)
+        {
+            Caption = 'The Date when renting ends';
+            DataClassification = CustomerContent;
+             trigger OnValidate()
+           var
+               CurrentDate: Date;
+               CannotSelectPastError: Text;
+             
+           begin
+               CannotSelectPastError:='You have to select one day at least';
+             
+             // Checking if ending date  Today or less
+             // if false
+               if ("Rental Ending Date">"Rental Starting Date") then begin end
+               // if true
+             else begin 
+               Error(CannotSelectPastError);
+               "Rental Ending Date":=Today()+1;
+             end;
+
+           end;
         }
        
     }
@@ -52,19 +137,24 @@ table 50104 "RNL Rental Sales Line"
         }
     }
 
-     var
-        //myInt: Integer;
+    
+      
 
     trigger OnInsert()
     var
         recSalesLine: Record "RNL Rental Sales Line";
     begin
+        // Очистить
         Clear(recSalesLine);
+        // Если если нашли последний
         IF recSalesLine.FindLast() then
-            "Line No." := recSalesLine."Line No." + 1
+        // То присваимваем инкрементированый номер
+            "Line No." := recSalesLine."Line No." + 10
         else
-            "Line No." := 1;
+            "Line No." := 10;
     end;
+
+    
 
    
     

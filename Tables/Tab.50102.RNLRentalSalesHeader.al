@@ -26,18 +26,43 @@ table 50102 "RNL Rental Sales Header"
         {
             Caption = 'Salesperson No.';
             DataClassification = CustomerContent;
+            TableRelation = "Salesperson/Purchaser";
         }
         field(3; "Customer No."; Code[20])
         {
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
+            TableRelation = Customer;
+            trigger OnValidate()
+            begin
+                if ("Customer No." <> xRec."Customer No.") then begin 
+                    CalcFields("Name", "Discount");
+                end;
+            end;
         }
-        field(4; "Order Date"; Date)
+
+        field(4; Name; Text[100])
+        {
+            Caption = 'Customer Name';
+           FieldClass=FlowField;
+           CalcFormula=Lookup(Customer.Name where ("No."=field("Customer No.")));
+         
+        }
+
+         field(5; Discount; Decimal)
+        {
+        Caption = 'Customer Discount';
+           FieldClass=FlowField;
+           CalcFormula=Lookup(Customer."RNL Discount" where ("No."=field("Customer No.")));
+          
+        }
+
+        field(50; "Order Date"; Date)
         {
             Caption = 'Order Date';
             DataClassification = CustomerContent;
         }
-        field(5; "No. Series"; Code[20])
+        field(100; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             DataClassification = CustomerContent;

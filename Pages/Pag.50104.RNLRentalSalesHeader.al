@@ -21,6 +21,12 @@ page 50104 "RNL Rental Sales Header"
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
                 }
+
+                  field(Name; Rec.Name)
+                {
+                    ToolTip = 'Represents name of the customer';
+                    ApplicationArea = All;
+                }
                 field("Order Date"; Rec."Order Date")
                 {
                     ToolTip = 'Specifies the value of the Order Date field.';
@@ -31,6 +37,14 @@ page 50104 "RNL Rental Sales Header"
                     ToolTip = 'Specifies the value of the Salesperson No. field.';
                     ApplicationArea = All;
                 }
+
+                  field(Discount; Rec.Discount)
+                {
+                    ToolTip = 'Specifies the value of Discount field.';
+                    ApplicationArea = All;
+                }
+
+              
             }
               part(SalesLines;"RNL Sales Subform")
             {
