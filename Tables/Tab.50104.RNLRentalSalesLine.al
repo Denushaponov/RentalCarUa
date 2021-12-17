@@ -72,22 +72,35 @@ table 50104 "RNL Rental Sales Line"
             Caption = 'The Date when renting starts';
             DataClassification = CustomerContent;
            trigger OnValidate()
-           var
+            var
                CurrentDate: Date;
                CannotSelectPastError: Text;
-                 StartingDateIsGreaterError: Text;
+                StartingDateIsGreaterError: Text;
+                RentalSalesLine: Record "RNL Rental Sales Line";
+                 CheckingDateMgt: Codeunit "RNL Check If Date Is In Range";
+                 BlankDate: Date;
            begin
               StartingDateIsGreaterError:='Your starting date is greater than ending date';
                CannotSelectPastError:='You have selected day from the past';
-               CurrentDate:= Today();  
+              
+               if("Rental Starting Date"<>xRec."Rental Starting Date") then begin
+                    RentalSalesLine.SetRange("Item No.","Item No.");
+                    RentalSalesLine.SetRange("Line No.","Line No.");
+                  if( RentalSalesLine.FindFirst()) then begin
+                        CheckingDateMgt.CheckingRange("Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
+                  end
+                else begin exit; end;
+               end;
+               
                if ("Rental Starting Date"< CurrentDate) then begin 
                Error(CannotSelectPastError);
-               "Rental Starting Date":=Today();
+               
                end;
 
                      // Checking if starting date is greater than ending date
                 if("Rental Ending Date"<"Rental Starting Date") then begin
                     // Messaging
+                    if("Rental Ending Date" <> 0D) then 
                     Error(StartingDateIsGreaterError);
                     // Setting that starting date to normal
 
@@ -112,18 +125,20 @@ table 50104 "RNL Rental Sales Line"
            var
                CurrentDate: Date;
                CannotSelectPastError: Text;
+               CheckingdateMgt: Codeunit "RNL Check If Date Is In Range";
              
            begin
                CannotSelectPastError:='You have to select one day at least';
-             
              // Checking if ending date  Today or less
              // if false
                if ("Rental Ending Date">"Rental Starting Date") then begin end
                // if true
              else begin 
                Error(CannotSelectPastError);
-               "Rental Ending Date":=Today()+1;
+              // "Rental Ending Date":=Today()+1;
              end;
+
+             CheckingDateMgt.CheckingRange("Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
 
            end;
         }
