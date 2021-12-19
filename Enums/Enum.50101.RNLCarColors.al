@@ -1,7 +1,7 @@
 enum 50101 "RNL Car Colors"
 {
     Extensible = true;
-    
+
     value(0; "Red")
     {
         Caption = 'Red Color';
@@ -22,5 +22,5 @@ enum 50101 "RNL Car Colors"
     {
         Caption = 'White Color';
     }
-    
+
 }

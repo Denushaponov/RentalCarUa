@@ -1,8 +1,8 @@
 enum 50100 "RNL Discount Target"
-{ 
+{
     Caption = 'Defines target type for discount';
     Extensible = true;
-    
+
     value(0; "Car")
     {
         Caption = 'Car';
@@ -11,5 +11,5 @@ enum 50100 "RNL Discount Target"
     {
         Caption = 'Customer';
     }
-    
+
 }
