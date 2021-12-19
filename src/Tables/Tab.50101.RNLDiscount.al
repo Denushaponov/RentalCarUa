@@ -6,7 +6,7 @@ table 50101 "RNL Discount"
 
     DrillDownPageId = "RNL Discount List";
     LookupPageId = "RNL Discount List";
-    
+
     fields
     {
         field(1; "Code"; Code[20])
@@ -17,11 +17,11 @@ table 50101 "RNL Discount"
             begin
                 if "Code" <> xRec."Code" then begin
                     DiscountSetup.Get();
-                   
+
                     // Does the No. Series can be fill manually?.
                     NoSeriesMgmt.TestManual((DiscountSetup."Discount Nos."));
                     // 
-                   "No. Series" :='';
+                    "No. Series" := '';
                 end;
             end;
         }
@@ -37,7 +37,7 @@ table 50101 "RNL Discount"
             MinValue = 0.01;
             MaxValue = 100;
         }
-          field(100; "No. Series"; Code[20])
+        field(100; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             Editable = false;
@@ -46,18 +46,18 @@ table 50101 "RNL Discount"
     }
     keys
     {
-        key(PK; "Code","Type")
+        key(PK; "Code", "Type")
         {
             Clustered = true;
         }
     }
 
-    var 
-    DiscountSetup: Record "RNL Discount Setup";
-    NoSeriesMgmt: Codeunit NoSeriesManagement;
-    
+    var
+        DiscountSetup: Record "RNL Discount Setup";
+        NoSeriesMgmt: Codeunit NoSeriesManagement;
+
     trigger OnInsert()
-    
+
     begin
         if "Code" = '' then begin
             DiscountSetup.Get();
@@ -66,5 +66,5 @@ table 50101 "RNL Discount"
             NoSeriesMgmt.InitSeries(DiscountSetup."Discount Nos.", xRec."Code", 0D, Rec."Code", Rec."No. Series");
         end;
     end;
-    
+
 }

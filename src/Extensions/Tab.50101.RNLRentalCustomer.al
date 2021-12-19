@@ -6,9 +6,10 @@ tableextension 50101 "RNL Rental Customer" extends Customer
         {
             Caption = 'Discount';
             DataClassification = CustomerContent;
-            TableRelation ="RNL Discount".Percent where (Type=filter(Customer));
+            TableRelation = "RNL Discount".Percent where(Type = filter(Customer));
             ValidateTableRelation = false;
+
         }
-        
+
     }
 }

@@ -1,13 +1,12 @@
-page 50105 "RNL Sales Subform"
+page 50105 "RNL Sales Line"
 {
-    
-  
+
     Caption = 'Cars to order';
     PageType = ListPart;
     SourceTable = "RNL Rental Sales Line";
     //AutoSplitKey=true;
-  
-    
+
+
     layout
     {
         area(content)
@@ -42,24 +41,48 @@ page 50105 "RNL Sales Subform"
                     ApplicationArea = All;
                 }
 
-                 field("Rental Starting Date"; Rec."Rental Starting Date")
+                field("Dominant Discount"; rec."Dominant Discount")
+                {
+                    ToolTip = 'Specifies the value of the dominant discount field';
+                    ApplicationArea = All;
+                }
+
+                field("Rental Starting Date"; Rec."Rental Starting Date")
                 {
                     ToolTip = 'Specifies the value of the Rental Starting Date field';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
                 field("Rental Ending Date"; Rec."Rental Ending Date")
                 {
                     ToolTip = 'Specifies the value of the Rental Ending Date field';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
                 field("Final Price"; Rec."Final Price")
                 {
                     ToolTip = 'Specifies the value of the Final Car Price field';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
             }
             // Сюда писать поля финальніе калькуляции
         }
     }
-    
+
 }

@@ -4,7 +4,7 @@ pageextension 50103 "Rental Salesperson Extension" extends "Salesperson/Purchase
     {
         modify("General")
         {
-            Caption='Rental Salesperson';
+            Caption = 'Rental Salesperson';
         }
         addafter("E-Mail")
         {

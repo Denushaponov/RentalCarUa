@@ -2,7 +2,7 @@ table 50100 "RNL Discount Setup"
 {
     Caption = 'Discount Setup';
     DataClassification = CustomerContent;
-    
+
     fields
     {
         field(1; "Primary Key"; Code[10])
@@ -14,7 +14,7 @@ table 50100 "RNL Discount Setup"
         {
             Caption = 'Discount Nos.';
             DataClassification = CustomerContent;
-            TableRelation="No. Series";
+            TableRelation = "No. Series";
         }
     }
     keys
@@ -25,5 +25,5 @@ table 50100 "RNL Discount Setup"
         }
     }
 
-  
+
 }

@@ -2,7 +2,7 @@ codeunit 50101 "RNL Looking For Maximum Disc"
 {
 
 
-    procedure GetMaximumDiscount(var DocumentNo: Code[20]) ReturnValue: Decimal
+    procedure GetMaximumDiscountLine(var DocumentNo: Code[20]; var LineNo: Integer; var Discount: Decimal) ReturnValue: Decimal
     var
         RentalSalesLineRec: Record "RNL Rental Sales Line";
         RentalSalesHeaderRec: Record "RNL Rental Sales Header";
@@ -12,16 +12,9 @@ codeunit 50101 "RNL Looking For Maximum Disc"
         RentalSalesHeaderRec.SetRange("Doc. No.", DocumentNo);
         RentalSalesHeaderRec.FindFirst();
         TheBiggestDiscount := RentalSalesHeaderRec.Discount;
-        repeat
-            if (RentalSalesLineRec.Discount > TheBiggestDiscount)
-            then begin
-                TheBiggestDiscount := RentalSalesLineRec.Discount
-            end;
-        until RentalSalesLineRec.Next() = 0;
-
+        if (Discount > TheBiggestDiscount) then begin TheBiggestDiscount := Discount; end;
         ReturnValue := TheBiggestDiscount;
     end;
-
 
 
 }

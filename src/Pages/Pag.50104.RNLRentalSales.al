@@ -1,10 +1,10 @@
-page 50104 "RNL Rental Sales Header"
+page 50104 "RNL Rental Sales"
 {
-    
+
     Caption = 'Rental Sales Card';
     PageType = Document;
     SourceTable = "RNL Rental Sales Header";
-    
+
     layout
     {
         area(content)
@@ -15,6 +15,7 @@ page 50104 "RNL Rental Sales Header"
                 {
                     ToolTip = 'Specifies the value of the Doc. No. field.';
                     ApplicationArea = All;
+
                 }
                 field("Customer No."; Rec."Customer No.")
                 {
@@ -22,7 +23,7 @@ page 50104 "RNL Rental Sales Header"
                     ApplicationArea = All;
                 }
 
-                  field(Name; Rec.Name)
+                field(Name; Rec.Name)
                 {
                     ToolTip = 'Represents name of the customer';
                     ApplicationArea = All;
@@ -38,21 +39,29 @@ page 50104 "RNL Rental Sales Header"
                     ApplicationArea = All;
                 }
 
-                  field(Discount; Rec.Discount)
+                field(Discount; Rec.Discount)
                 {
                     ToolTip = 'Specifies the value of Discount field.';
                     ApplicationArea = All;
                 }
 
-              
+
+
             }
-              part(SalesLines;"RNL Sales Subform")
+            part(SalesLines; "RNL Sales Line")
             {
                 ApplicationArea = All;
                 /*add link between the header and lines
                 that "No." in header is the same as 
                 "Document No." in the lines.*/
                 SubPageLink = "Doc. No." = field("Doc. No.");
+                UpdatePropagation = Both;
+
+            }
+
+            field("Bill Amount"; Rec."Bill Amount")
+            {
+                ApplicationArea = all;
 
             }
         }
@@ -64,16 +73,18 @@ page 50104 "RNL Rental Sales Header"
         {
             action(CustomerCard)
             {
-                ApplicationArea=all;
-                Caption='Customer Card';
-                Image=Customer;
-                Promoted=true;
-                PromotedCategory=Process;
-                RunObject=page"Customer Card";
-                RunPageLink="No."=field("Customer No.");
-                ToolTip='Opens customer card';
+                ApplicationArea = all;
+                Caption = 'Customer Card';
+                Image = Customer;
+                Promoted = true;
+                PromotedCategory = Process;
+                RunObject = page "Customer Card";
+                RunPageLink = "No." = field("Customer No.");
+                ToolTip = 'Opens customer card';
             }
         }
     }
-    
+
+
+
 }

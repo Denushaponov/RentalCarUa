@@ -1,8 +1,8 @@
-table 50105 "RNL Sales Line Setup"
+table 50103 "RNL Sales Setup"
 {
-    Caption = 'Sales Line Setup';
+    Caption = 'RNL Sales Setup';
     DataClassification = CustomerContent;
-    
+
     fields
     {
         field(1; "Primary Key"; Code[10])
@@ -10,11 +10,12 @@ table 50105 "RNL Sales Line Setup"
             Caption = 'Primary Key';
             DataClassification = CustomerContent;
         }
-        field(2; "Line Nos."; Code[20])
+        field(2; "Sales Nos."; Code[20])
         {
-            Caption = 'Line Nos.';
+            Caption = 'Sales Nos.';
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
+
         }
     }
     keys
@@ -24,5 +25,5 @@ table 50105 "RNL Sales Line Setup"
             Clustered = true;
         }
     }
-    
+
 }
