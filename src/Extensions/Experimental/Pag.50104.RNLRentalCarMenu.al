@@ -3,7 +3,7 @@ pageextension 50104 "RNL RentalCarMenu" extends "Business Manager Role Center"
     actions
     {
 
-        addlast(sections)
+        addlast(embedding)
         {
 
             group("RNL Discount")
