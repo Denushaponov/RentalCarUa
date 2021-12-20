@@ -5,6 +5,7 @@ page 50109 "RNL Posted Rental Sales Card"
     PageType = Card;
     SourceTable = "RNL Posted Rental Sales Header";
 
+
     layout
     {
         area(content)

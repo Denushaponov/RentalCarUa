@@ -49,6 +49,17 @@ pageextension 50101 "RNL Item Car Extension" extends "Item Card"
                     PromotedIsBig = true;
                     PromotedOnly = true;
                     Image = Export;
+
+                    trigger OnAction()
+                    var
+
+                        CarXmlPort: XmlPort "RNL Car";
+
+                    begin
+
+
+                        CarXmlPort.Export();
+                    end;
                 }
 
 

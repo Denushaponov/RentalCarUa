@@ -4,6 +4,7 @@ page 50104 "RNL Rental Sales Card"
     Caption = 'Rental Sales Card';
     PageType = Card;
     SourceTable = "RNL Rental Sales Header";
+    PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
 
     layout
     {
@@ -106,7 +107,7 @@ page 50104 "RNL Rental Sales Card"
             action(Post)
             {
                 ApplicationArea = Basic, Suite;
-                Caption = 'P&ost';
+                Caption = 'Post';
                 Ellipsis = true;
                 Image = PostOrder;
                 Promoted = true;

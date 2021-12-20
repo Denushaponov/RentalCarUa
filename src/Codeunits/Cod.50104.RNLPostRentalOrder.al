@@ -46,8 +46,8 @@ codeunit 50104 "RNL Post Rental Order"
         RNLRentalSalesLine.SetRange("Doc. No.", RNLRentalOrder."Doc. No.");
         RNLRentalSalesLine.CalcSums("Final Price");
 
-        PostGenJnl(RNLRentalSalesSetup."Interest Account", 'Radion Show Interest', RNLRentalSalesLine."Final Price");
-        PostGenJnl(RNLRentalSalesSetup."Gross Receivable", 'Radion Show Gross Receivable', -RNLRentalSalesLine."Final Price");
+        PostGenJnl(RNLRentalSalesSetup."Interest Account", 'RNL Interest', RNLRentalSalesLine."Final Price");
+        PostGenJnl(RNLRentalSalesSetup."Gross Receivable", 'RNL Gross Receivable', -RNLRentalSalesLine."Final Price");
     end;
 
     local procedure PostGenJnl(GLAccNo: Code[20]; Descr: Text; Amt: Decimal)
