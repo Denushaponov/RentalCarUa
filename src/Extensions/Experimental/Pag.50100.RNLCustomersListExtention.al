@@ -48,16 +48,7 @@ pageextension 50100 "RNL Customers List Extention" extends "Customer List"
                 RunObject = page "RNL Rental Sales Card";
                 ToolTip = 'Opens sales document.';
             }
-            action("RNL Rental Sales Line Setup")
-            {
-                ApplicationArea = All;
-                Caption = 'Sales Line Setup';
-                Image = SalesPrices;
-                Promoted = true;
-                PromotedCategory = Process;
-                RunObject = page "RNL Sales Line Setup";
-                ToolTip = 'Opens sales document.';
-            }
+
 
             action("RNL Orders List")
             {
