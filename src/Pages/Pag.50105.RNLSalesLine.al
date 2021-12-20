@@ -22,10 +22,28 @@ page 50105 "RNL Sales Line"
                 {
                     ToolTip = 'Specifies the value of the Item No field.';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+
+                    begin
+                        CurrPage.Update();
+                    end;
+
                 }
                 field("Car Model"; Rec."Car Model")
                 {
                     ToolTip = 'Specifies the value of the Car Model field.';
+                    ApplicationArea = All;
+                }
+
+                field(Color; Rec.Color)
+                {
+                    ToolTip = 'Specifies the value of the Car Color field.';
+                    ApplicationArea = All;
+                }
+                field(Mileage; Rec.Mileage)
+                {
+                    ToolTip = 'Specifies the value of the Car Mileage field.';
                     ApplicationArea = All;
                 }
 
@@ -45,6 +63,12 @@ page 50105 "RNL Sales Line"
                 {
                     ToolTip = 'Specifies the value of the dominant discount field';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
 
                 field("Rental Starting Date"; Rec."Rental Starting Date")
@@ -81,7 +105,7 @@ page 50105 "RNL Sales Line"
                     end;
                 }
             }
-            // Сюда писать поля финальніе калькуляции
+
         }
     }
 
