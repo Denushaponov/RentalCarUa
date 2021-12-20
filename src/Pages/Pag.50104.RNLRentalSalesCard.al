@@ -60,11 +60,15 @@ page 50104 "RNL Rental Sales Card"
                 UpdatePropagation = Both;
 
             }
-
-            field("Bill Amount"; Rec."Bill Amount")
+            group("Total Amount")
             {
-                ApplicationArea = all;
+                field("Bill Amount"; Rec."Bill Amount")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+                    Caption = 'Shows final bill';
 
+                }
             }
         }
     }

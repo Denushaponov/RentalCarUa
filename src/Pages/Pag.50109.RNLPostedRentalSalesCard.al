@@ -31,20 +31,24 @@ page 50109 "RNL Posted Rental Sales Card"
                     ToolTip = 'Specifies the value of the Salesperson No. field.';
                     ApplicationArea = All;
                 }
+            }
 
-                part(Lines; "RNL Posted Rental Sales Lines")
-                {
-                    ApplicationArea = all;
-                    SubPageLink = "Doc. No." = field("Doc. No.");
-                    Editable = false;
-                }
-
+            part(Lines; "RNL Posted Rental Sales Lines")
+            {
+                ApplicationArea = all;
+                SubPageLink = "Doc. No." = field("Doc. No.");
+                Editable = false;
+            }
+            group("Total amount")
+            {
                 field("Bill Amount"; Rec."Bill Amount")
                 {
                     ToolTip = 'Specifies the value of the Bill Amount field.';
                     ApplicationArea = All;
                 }
             }
+
+
 
         }
 
