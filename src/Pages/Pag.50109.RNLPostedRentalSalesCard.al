@@ -16,11 +16,13 @@ page 50109 "RNL Posted Rental Sales Card"
                 {
                     ToolTip = 'Specifies the value of the Doc. No. field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Customer No."; Rec."Customer No.")
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field(Name; Rec.Name)
                 {
@@ -31,6 +33,7 @@ page 50109 "RNL Posted Rental Sales Card"
                 {
                     ToolTip = 'Specifies the value of the Salesperson No. field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
             }
 
