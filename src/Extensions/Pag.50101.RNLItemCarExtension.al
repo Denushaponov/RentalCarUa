@@ -17,7 +17,7 @@ pageextension 50101 "RNL Item Car Extension" extends "Item Card"
             {
                 ApplicationArea = All;
             }
-            field("RNL Millage"; Rec."RNL Millage")
+            field("RNL Millage"; Rec."RNL Mileage")
             {
                 ApplicationArea = All;
             }

@@ -31,16 +31,19 @@ table 50104 "RNL Rental Sales Line"
                 BillCalcMgt: Codeunit "RNL Calculating Bill";
             begin
                 if ("Item No." <> xRec."Item No.") then begin
-                    CalcFields("Car Model");
                     Item.SetRange("No.", "Item No.");
                     Item.FindFirst();
+                    CalcFields("Car Model");
+                    "Rental Ending Date" := 0D;
+                    "Rental Starting Date" := 0D;
+                    "Final Price" := 0;
                     "Price Per Day" := Item."RNL Price Per Day";
                     "Discount" := Item."RNL Discount";
-                    CheckingDateMgt.CheckingRange(rec."Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
-                    "Dominant Discount" := LookingForTheGreatestDisc.GetMaximumDiscountLine("Doc. No.", "Line No.", Discount);
-                    "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
-                    BillCalcMgt.Calculate("Doc. No.", "Line No.", "Final Price");
 
+                    // CheckingDateMgt.CheckingRange("Doc. No.", rec."Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
+                    //  "Dominant Discount" := LookingForTheGreatestDisc.GetMaximumDiscountLine("Doc. No.", "Line No.", Discount);
+                    //  "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
+                    //  BillCalcMgt.Calculate("Doc. No.", "Line No.", "Final Price");
                 end;
             end;
         }
@@ -53,7 +56,25 @@ table 50104 "RNL Rental Sales Line"
             CalcFormula = Lookup(Item."RNL Model" WHERE("No." = FIELD("Item No.")));
         }
 
-        field(5; "Price Per Day"; Decimal)
+
+        field(15; Color; Enum "RNL Car Colors")
+        {
+            Caption = 'Car Color';
+            Editable = false;
+            // Добавить логику заполнения поля модели
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."RNL Color" WHERE("No." = FIELD("Item No.")));
+        }
+        field(20; Mileage; Integer)
+        {
+            Caption = 'Car Mileage';
+            Editable = false;
+            // Добавить логику заполнения поля модели
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."RNL Mileage" WHERE("No." = FIELD("Item No.")));
+        }
+
+        field(25; "Price Per Day"; Decimal)
         {
             Caption = 'Represent price of the car for one rental day';
             Editable = false;
@@ -89,6 +110,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(100; "Rental Starting Date"; Date)
         {
+
             Caption = 'The Date when renting starts';
             DataClassification = CustomerContent;
             trigger OnValidate()
@@ -104,34 +126,37 @@ table 50104 "RNL Rental Sales Line"
                 StartingDateIsGreaterError := 'Your starting date is greater than ending date';
                 CannotSelectPastError := 'You have selected day from the past';
 
-                if ("Rental Starting Date" <> xRec."Rental Starting Date") then begin
-                    RentalSalesLine.SetRange("Item No.", "Item No.");
-                    RentalSalesLine.SetRange("Line No.", "Line No.");
-                    if (RentalSalesLine.FindFirst()) then begin
-                        CheckingDateMgt.CheckingRange("Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
-                    end
-                    else begin
-                        exit;
-                    end;
-                end;
+                //if ("Rental Starting Date" <> xRec."Rental Starting Date") then begin
+                //  RentalSalesLine.SetRange("Item No.", "Item No.");
+                //  RentalSalesLine.SetRange("Line No.", "Line No.");
+                //  if (RentalSalesLine.FindFirst()) then begin
+                //  end
+                //  else begin
+                //       exit;
+                //   end;
+                //end;
 
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
+
                 then begin
 
                     // Стартовая дата меньше текущей
-                    if ("Rental Starting Date" < CurrentDate) then begin
+                    if ("Rental Starting Date" < Today()) then begin
                         Error(CannotSelectPastError)
                     end;
                     // Стартовая дата больше конечной
                     if ("Rental Ending Date" < "Rental Starting Date") then begin
+                        TestField("Rental Ending Date");
                         Error(StartingDateIsGreaterError);
                     end;
                     // Стартовая дата = конечной
                     if ("Rental Ending Date" = "Rental Starting Date") then begin
+
                         Error('It should be a day at least');
                     end;
 
+                    CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
 
 
                 end;
@@ -159,6 +184,8 @@ table 50104 "RNL Rental Sales Line"
 
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
+
+
                 then begin
 
                     // Стартовая дата меньше текущей
@@ -177,7 +204,7 @@ table 50104 "RNL Rental Sales Line"
                 end;
 
 
-                CheckingDateMgt.CheckingRange("Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
+                CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
                 "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
             end;
         }

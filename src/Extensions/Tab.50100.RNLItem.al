@@ -14,9 +14,9 @@ tableextension 50100 "RNL Item" extends Item
             Caption = 'Color';
             DataClassification = CustomerContent;
         }
-        field(50103; "RNL Millage"; Integer)
+        field(50103; "RNL Mileage"; Integer)
         {
-            Caption = 'Millage';
+            Caption = 'Mileage';
             DataClassification = CustomerContent;
         }
         field(50104; "RNL Price Per Day"; Decimal)

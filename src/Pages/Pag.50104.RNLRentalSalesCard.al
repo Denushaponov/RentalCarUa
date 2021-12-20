@@ -1,8 +1,8 @@
-page 50104 "RNL Rental Sales"
+page 50104 "RNL Rental Sales Card"
 {
 
     Caption = 'Rental Sales Card';
-    PageType = Document;
+    PageType = Card;
     SourceTable = "RNL Rental Sales Header";
 
     layout
@@ -15,6 +15,7 @@ page 50104 "RNL Rental Sales"
                 {
                     ToolTip = 'Specifies the value of the Doc. No. field.';
                     ApplicationArea = All;
+                    Editable = false;
 
                 }
                 field("Customer No."; Rec."Customer No.")
@@ -43,6 +44,7 @@ page 50104 "RNL Rental Sales"
                 {
                     ToolTip = 'Specifies the value of Discount field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
 
@@ -81,6 +83,43 @@ page 50104 "RNL Rental Sales"
                 RunObject = page "Customer Card";
                 RunPageLink = "No." = field("Customer No.");
                 ToolTip = 'Opens customer card';
+            }
+
+            //// Edit this
+            action(PostedOrders)
+            {
+                ApplicationArea = all;
+                Caption = 'Posted Orders';
+                Image = Customer;
+                Promoted = true;
+                PromotedCategory = Process;
+                RunObject = page "RNL Posted Rental Sales List";
+                ToolTip = 'Opens posted orders';
+            }
+        }
+        area(Processing)
+        {
+            action(Post)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'P&ost';
+                Ellipsis = true;
+                Image = PostOrder;
+                Promoted = true;
+                PromotedCategory = Category6;
+                PromotedIsBig = true;
+                ShortCutKey = 'F9';
+                ToolTip = 'Finalize the document';
+
+                AboutTitle = 'Posting the order';
+                AboutText = 'Posting will post the quantities on the order.';
+
+                trigger OnAction()
+                var
+                    RNLPostRentalSalesOrder: Codeunit "RNL Post Rental Order";
+                begin
+                    RNLPostRentalSalesOrder.PostRentalOrder((Rec));
+                end;
             }
         }
     }

@@ -1,28 +1,19 @@
-page 50107 "RNL Orders List"
+page 50109 "RNL Posted Rental Sales Card"
 {
 
-    ApplicationArea = All;
-    Caption = 'Orders List';
-    PageType = List;
-    SourceTable = "RNL Rental Sales Header";
-    UsageCategory = Lists;
-    Editable = false;
-    CardPageId = "RNL Rental Sales Card";
+    Caption = 'RNL Posted Rental Sales Card';
+    PageType = Card;
+    SourceTable = "RNL Posted Rental Sales Header";
 
     layout
     {
         area(content)
         {
-            repeater(General)
+            group(General)
             {
                 field("Doc. No."; Rec."Doc. No.")
                 {
                     ToolTip = 'Specifies the value of the Doc. No. field.';
-                    ApplicationArea = All;
-                }
-                field("Order Date"; Rec."Order Date")
-                {
-                    ToolTip = 'Specifies the value of the Order Date field.';
                     ApplicationArea = All;
                 }
                 field("Customer No."; Rec."Customer No.")
@@ -35,13 +26,30 @@ page 50107 "RNL Orders List"
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
                 }
+                field("Salesperson No."; Rec."Salesperson No.")
+                {
+                    ToolTip = 'Specifies the value of the Salesperson No. field.';
+                    ApplicationArea = All;
+                }
+
+                part(Lines; "RNL Posted Rental Sales Lines")
+                {
+                    ApplicationArea = all;
+                    SubPageLink = "Doc. No." = field("Doc. No.");
+                    Editable = false;
+                }
+
                 field("Bill Amount"; Rec."Bill Amount")
                 {
                     ToolTip = 'Specifies the value of the Bill Amount field.';
                     ApplicationArea = All;
                 }
             }
+
         }
+
+
     }
+
 
 }

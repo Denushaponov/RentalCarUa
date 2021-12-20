@@ -3,8 +3,8 @@ codeunit 50102 "RNL CalculatingPriceWithDisc"
     procedure CalculateFinalCarPrice(var StartingDate: Date; var EndingDate: Date; var DominantDiscount: Decimal; var PricePerDay: Decimal) ReturnValue: Decimal
     var
 
-        Quantity: Integer;
-        DiscountedPricePart: Integer;
+        Quantity: Decimal;
+        DiscountedPricePart: Decimal;
         TotalSumOfOrder: Decimal;
 
     begin
@@ -12,7 +12,7 @@ codeunit 50102 "RNL CalculatingPriceWithDisc"
         Quantity := EndingDate - StartingDate;
         if Quantity = 0 then exit;
         TotalSumOfOrder := Quantity * PricePerDay;
-        //DiscountedPricePart := DominantDiscount * TotalSumOfOrder / 100;
+        DiscountedPricePart := DominantDiscount * (TotalSumOfOrder / 100);
         ReturnValue := TotalSumOfOrder - DiscountedPricePart;
     end;
 }
