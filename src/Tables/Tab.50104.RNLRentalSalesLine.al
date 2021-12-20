@@ -116,25 +116,14 @@ table 50104 "RNL Rental Sales Line"
             trigger OnValidate()
             var
                 CurrentDate: Date;
-                CannotSelectPastError: Text;
-                StartingDateIsGreaterError: Text;
+                CannotSelectPastError: Label 'You have selected day from the past';
+                StartingDateIsGreaterError: label 'Your starting date is greater than ending date';
+                SouldBeOneDayError: label 'It should be a day at least';
                 RentalSalesLine: Record "RNL Rental Sales Line";
                 CheckingDateMgt: Codeunit "RNL Check If Date Is In Range";
                 BlankDate: Date;
                 CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
             begin
-                StartingDateIsGreaterError := 'Your starting date is greater than ending date';
-                CannotSelectPastError := 'You have selected day from the past';
-
-                //if ("Rental Starting Date" <> xRec."Rental Starting Date") then begin
-                //  RentalSalesLine.SetRange("Item No.", "Item No.");
-                //  RentalSalesLine.SetRange("Line No.", "Line No.");
-                //  if (RentalSalesLine.FindFirst()) then begin
-                //  end
-                //  else begin
-                //       exit;
-                //   end;
-                //end;
 
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
@@ -153,7 +142,7 @@ table 50104 "RNL Rental Sales Line"
                     // Стартовая дата = конечной
                     if ("Rental Ending Date" = "Rental Starting Date") then begin
 
-                        Error('It should be a day at least');
+                        Error(SouldBeOneDayError);
                     end;
 
                     CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
@@ -173,21 +162,15 @@ table 50104 "RNL Rental Sales Line"
             trigger OnValidate()
             var
                 CurrentDate: Date;
-                CannotSelectPastError: Text;
+                CannotSelectPastError: Label 'You have to select one day at least';
                 CheckingdateMgt: Codeunit "RNL Check If Date Is In Range";
                 CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
-                StartingDateIsGreaterError: Text;
+                StartingDateIsGreaterError: Label 'Your starting date is greater than ending date';
+                SouldBeOneDayError: label 'It should be a day at least';
             begin
-
-                StartingDateIsGreaterError := 'Your starting date is greater than ending date';
-                CannotSelectPastError := 'You have to select one day at least';
-
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
-
-
                 then begin
-
                     // Стартовая дата меньше текущей
                     if ("Rental Starting Date" < CurrentDate) then begin
                         Error(CannotSelectPastError)
@@ -198,7 +181,7 @@ table 50104 "RNL Rental Sales Line"
                     end;
                     // Стартовая дата = конечной
                     if ("Rental Ending Date" = "Rental Starting Date") then begin
-                        Error('It should be a day at least');
+                        Error(SouldBeOneDayError);
                     end;
 
                 end;
