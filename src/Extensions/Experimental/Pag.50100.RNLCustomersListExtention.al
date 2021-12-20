@@ -62,8 +62,6 @@ pageextension 50100 "RNL Customers List Extention" extends "Customer List"
 
             group("RNL Posted")
             {
-
-
                 action("RNL Posted Orders List")
                 {
                     ApplicationArea = All;
@@ -74,9 +72,21 @@ pageextension 50100 "RNL Customers List Extention" extends "Customer List"
                     RunObject = page "RNL Posted Rental Sales List";
                     ToolTip = 'Opens posted orders list';
                 }
+            }
 
-
-
+            group("RNL Report")
+            {
+                action("RNL Report all cars")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Car report';
+                    Image = List;
+                    Promoted = true;
+                    PromotedCategory = "Report";
+                    PromotedIsBig = true;
+                    RunObject = report "RNL Availible Cars";
+                    ToolTip = 'Creates Car Report';
+                }
             }
         }
 

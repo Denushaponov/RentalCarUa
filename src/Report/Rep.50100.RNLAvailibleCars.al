@@ -41,16 +41,10 @@ report 50100 "RNL Availible Cars"
             {
                 IncludeCaption = true;
             }
-
-            trigger OnAfterGetRecord()
-            var
-                myInt: Integer;
-            begin
-
-            end;
         }
-
     }
+
+
 
 }
 
