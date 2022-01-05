@@ -1,8 +1,11 @@
 xmlport 50100 "RNL Car"
 {
     Caption = 'Car';
-    Encoding = UTF8;
-    FormatEvaluate = xml;
+    //Encoding = UTF8;
+    Direction = Import;
+    FormatEvaluate = Legacy;
+    Format = VariableText;
+
 
 
 
@@ -13,7 +16,7 @@ xmlport 50100 "RNL Car"
         {
             tableelement(Item; Item)
             {
-                RequestFilterFields = Type;
+
 
                 fieldelement(No; Item."No.")
                 {
