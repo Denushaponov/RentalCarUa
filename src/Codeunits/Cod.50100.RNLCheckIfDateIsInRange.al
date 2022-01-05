@@ -95,7 +95,7 @@ codeunit 50100 "RNL Check If Date Is In Range"
         FilteredRecordEndingDate: Date;
         ChangedEndingDate: Date;
         ChangedStartingDate: Date;
-        PeriodIsBusyErr: Label 'Period Is Busy by another line in posted document';
+        PeriodIsBusyErr: Label 'Period Is Busy by another line in posted document', Comment = '%1 = Code[20]';
         IncludesDayForCarServiceErr: Label 'Includes a day for a service %1 or %2, from posted lines, try to change the date and reselect the car', Comment = '%1 = Date, %2=Date';
 
     begin

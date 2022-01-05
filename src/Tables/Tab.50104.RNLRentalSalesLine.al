@@ -23,7 +23,7 @@ table 50104 "RNL Rental Sales Line"
 
             trigger OnValidate()
             var
-                Item: Record "Item";
+                ItemRec: Record "Item";
                 LookingForTheGreatestDisc: Codeunit "RNL Looking For Maximum Disc";
                 CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
                 CheckingDateMgt: Codeunit "RNL Check If Date Is In Range";
@@ -31,17 +31,17 @@ table 50104 "RNL Rental Sales Line"
                 BillCalcMgt: Codeunit "RNL Calculating Bill";
             begin
                 if ("Item No." <> xRec."Item No.") then begin
-                    Item.SetRange("No.", "Item No.");
-                    Item.FindFirst();
+                    ItemRec.SetRange("No.", "Item No.");
+                    ItemRec.FindFirst();
                     CalcFields("Car Model");
                     "Rental Ending Date" := 0D;
                     "Rental Starting Date" := 0D;
-                    "Final Price" := 0;
-                    "Price Per Day" := Item."RNL Price Per Day";
-                    "Discount" := Item."RNL Discount";
+                    //"Final Price" := 0;
+                    "Price Per Day" := ItemRec."RNL Price Per Day";
+                    "Discount" := ItemRec."RNL Discount";
 
                     // CheckingDateMgt.CheckingRange("Doc. No.", rec."Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
-                    //  "Dominant Discount" := LookingForTheGreatestDisc.GetMaximumDiscountLine("Doc. No.", "Line No.", Discount);
+                    "Dominant Discount" := LookingForTheGreatestDisc.GetMaximumDiscountLine("Doc. No.", "Line No.", Discount);
                     //  "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
                     //  BillCalcMgt.Calculate("Doc. No.", "Line No.", "Final Price");
                 end;
@@ -145,11 +145,11 @@ table 50104 "RNL Rental Sales Line"
                         Error(SouldBeOneDayError);
                     end;
 
-                    CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
 
 
                 end;
 
+                CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
                 "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
 
             end;
