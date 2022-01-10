@@ -1,13 +1,9 @@
 xmlport 50100 "RNL Car"
 {
     Caption = 'Car';
-    //Encoding = UTF8;
-    Direction = Import;
-    FormatEvaluate = Legacy;
-    Format = VariableText;
-
-
-
+    Encoding = UTF8;
+    //Direction = Import;
+    FormatEvaluate = Xml;
 
     schema
     {

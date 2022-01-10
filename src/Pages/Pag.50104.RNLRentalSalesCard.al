@@ -72,7 +72,19 @@ page 50104 "RNL Rental Sales Card"
                 }
             }
         }
+
+        area(FactBoxes)
+        {
+            part(factbox; "RNL Car Factbox")
+            {
+                ApplicationArea = suite;
+                Provider = SalesLines;
+                SubPageLink = "No." = field("Item No.");
+            }
+        }
     }
+
+
 
     actions
     {

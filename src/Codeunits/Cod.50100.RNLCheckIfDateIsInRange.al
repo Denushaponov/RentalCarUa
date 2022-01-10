@@ -4,6 +4,7 @@ codeunit 50100 "RNL Check If Date Is In Range"
 
     procedure CheckingRange(var DocNo: Code[20]; var ItemNo: Code[20]; var LineNo: Integer; var StartingDate: Date; var EndingDate: Date)
     begin
+
         CheckingLinesMaybePeriodIsInvalid(DocNo, ItemNo, LineNo, StartingDate, EndingDate);
         CheckingPostedLinesMaybePeriodIsInvalid(DocNo, ItemNo, LineNo, StartingDate, EndingDate);
     end;
@@ -63,7 +64,7 @@ codeunit 50100 "RNL Check If Date Is In Range"
         FilteredOrderLine.Reset();
         // Фильтрую по параметрам Айтим но и лан Но
         FilteredOrderLine.SetFilter("Doc. No.", '=%1', DocNo);
-        FilteredOrderLine.SetRange("Item No.", ItemNo);
+        FilteredOrderLine.SetFilter("Item No.", ItemNo);
         FilteredOrderLine.SetFilter("Line No.", '<>%1', LineNo);
 
         // Если найден такой набор захожу в цикл

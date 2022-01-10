@@ -76,7 +76,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(25; "Price Per Day"; Decimal)
         {
-            Caption = 'Represent price of the car for one rental day';
+            Caption = 'Specifies Price Per Day field';
             Editable = false;
             DataClassification = CustomerContent;
             // FieldClass =FlowField;
@@ -86,7 +86,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(50; Discount; Decimal)
         {
-            Caption = 'Represents selected car discount ';
+            Caption = 'Specifies selected car discount';
             Editable = false;
             DataClassification = CustomerContent;
 
@@ -94,7 +94,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(60; "Dominant Discount"; Decimal)
         {
-            Caption = 'Represents the maximum discount';
+            Caption = 'Specifies dominant discount field';
             Editable = false;
             DataClassification = CustomerContent;
         }
@@ -103,7 +103,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(75; "Final Price"; Decimal)
         {
-            Caption = 'Price including car discount';
+            Caption = 'Specifies final price';
             Editable = false;
             DataClassification = CustomerContent;
         }
@@ -111,7 +111,7 @@ table 50104 "RNL Rental Sales Line"
         field(100; "Rental Starting Date"; Date)
         {
 
-            Caption = 'The Date when renting starts';
+            Caption = 'Specifies Rental Starting Date field';
             DataClassification = CustomerContent;
             trigger OnValidate()
             var
@@ -146,18 +146,18 @@ table 50104 "RNL Rental Sales Line"
                     end;
 
 
+                    CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
+                    "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
 
                 end;
 
-                CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
-                "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
 
             end;
         }
 
         field(150; "Rental Ending Date"; Date)
         {
-            Caption = 'The Date when renting ends';
+            Caption = 'Rental ending date';
             DataClassification = CustomerContent;
             trigger OnValidate()
             var
@@ -184,12 +184,12 @@ table 50104 "RNL Rental Sales Line"
                         Error(SouldBeOneDayError);
                     end;
 
+                    CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
+                    "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
                 end;
-
-
-                CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
-                "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
             end;
+
+
         }
 
     }

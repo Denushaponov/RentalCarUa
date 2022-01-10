@@ -39,23 +39,41 @@ pageextension 50101 "RNL Item Car Extension" extends "Item Card"
         {
             group("RNL XMLExportImport")
             {
-                action("RNL ExportImport")
+                action("RNL Cars Import")
                 {
                     ApplicationArea = All;
-                    Caption = 'Export or import car';
-                    RunObject = xmlport "RNL Car";
+                    Caption = 'Import car';
+
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     PromotedOnly = true;
                     Image = Export;
+                    trigger OnAction()
+
+                    begin
+                        Xmlport.Run(50100, true, true);
+                    end;
+                }
+                action("RNL Cars Export")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Export car';
+
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    Image = Export;
+                    trigger OnAction()
+
+                    begin
+                        Xmlport.Run(50100, true, false);
+                    end;
 
 
                 }
-
-
             }
         }
     }
-
 }

@@ -57,6 +57,8 @@ page 50109 "RNL Posted Rental Sales Card"
         }
 
 
+
+
     }
 
 
