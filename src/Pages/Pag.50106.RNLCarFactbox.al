@@ -33,7 +33,7 @@ page 50106 "RNL Car Factbox"
                 }
                 field("RNL Availability"; Rec.Availability)
                 {
-                    ToolTip = 'Is car availible today';
+                    ToolTip = 'Is car availible';
                     ApplicationArea = all;
                 }
             }
@@ -44,8 +44,7 @@ page 50106 "RNL Car Factbox"
     var
         CheckForAvailability: Codeunit "RNL Is Car Availible";
     begin
-        Rec.Availability := CheckForAvailability.IsAvailible(Rec."Item No.");
-
+        Rec.Availability := CheckForAvailability.IsAvailible(Rec."Item No.", rec."Rental Starting Date", rec."Rental Ending Date");
     end;
 
 }
