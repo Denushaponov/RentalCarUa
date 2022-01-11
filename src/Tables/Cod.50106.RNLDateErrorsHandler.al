@@ -1,22 +1,9 @@
 codeunit 50106 "RNL Date Errors Handler"
 {
 
-    local procedure FinalPriceCalculationValidation(var ListRecord: Record "RNL Rental Sales Line"; var ErrorText: Text): Decimal
-    var
-        FinalPrice: Decimal;
-        CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
-    begin
-        if (ListRecord."Rental Starting Date" <> 0D) and (ListRecord."Rental Ending Date" <> 0D)
-              then begin
-            DateValidation(ListRecord, ErrorText);
-            FinalPrice := CalculateFinalPrice.CalculateFinalCarPrice(ListRecord."Rental Starting Date", ListRecord."Rental Ending Date", ListRecord."Dominant Discount", ListRecord."Price Per Day");
-        end
-        else
-            FinalPrice := 0;
 
-    end;
 
-    local procedure DateValidation(var ListRecord: Record "RNL Rental Sales Line"; var ErrorText: Text)
+    procedure DateValidation(var ListRecord: Record "RNL Rental Sales Line")
     var
         CannotSelectPastError: Label 'You selected day from the past';
         StartingDateIsGreaterError: label 'Your starting date is greater than ending date';
