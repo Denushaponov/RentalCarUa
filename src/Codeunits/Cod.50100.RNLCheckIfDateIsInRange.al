@@ -2,6 +2,7 @@ codeunit 50100 "RNL Check If Date Is In Range"
 {
     TableNo = "RNL Rental Sales Line";
 
+    [TryFunction]
     procedure CheckingRange(var DocNo: Code[20]; var ItemNo: Code[20]; var LineNo: Integer; var StartingDate: Date; var EndingDate: Date)
     begin
 

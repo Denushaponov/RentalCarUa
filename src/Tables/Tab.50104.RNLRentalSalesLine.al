@@ -115,23 +115,23 @@ table 50104 "RNL Rental Sales Line"
             DataClassification = CustomerContent;
             trigger OnValidate()
             var
-                CurrentDate: Date;
-                CannotSelectPastError: Label 'You have selected day from the past';
+
+                CannotSelectPastError: Label 'You selected day from the past';
                 StartingDateIsGreaterError: label 'Your starting date is greater than ending date';
                 SouldBeOneDayError: label 'It should be a day at least';
                 RentalSalesLine: Record "RNL Rental Sales Line";
                 CheckingDateMgt: Codeunit "RNL Check If Date Is In Range";
-                BlankDate: Date;
                 CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
             begin
 
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
-
                 then begin
-
                     // Стартовая дата меньше текущей
                     if ("Rental Starting Date" < Today()) then begin
+                        Error(CannotSelectPastError)
+                    end;
+                    if ("Rental Ending Date" < Today()) then begin
                         Error(CannotSelectPastError)
                     end;
                     // Стартовая дата больше конечной
@@ -140,8 +140,7 @@ table 50104 "RNL Rental Sales Line"
                         Error(StartingDateIsGreaterError);
                     end;
                     // Стартовая дата = конечной
-                    if ("Rental Ending Date" = "Rental Starting Date") then begin
-
+                    if ("Rental Ending Date" = "Rental Starting Date") and ("Rental Ending Date" <> 0D) then begin
                         Error(SouldBeOneDayError);
                     end;
 
@@ -149,6 +148,7 @@ table 50104 "RNL Rental Sales Line"
                     CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
                     "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
 
+                    // CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date";
                 end;
 
 
@@ -161,20 +161,24 @@ table 50104 "RNL Rental Sales Line"
             DataClassification = CustomerContent;
             trigger OnValidate()
             var
-                CurrentDate: Date;
-                CannotSelectPastError: Label 'You have to select one day at least';
+
+                CannotSelectPastError: Label 'You selected day from the past';
                 CheckingdateMgt: Codeunit "RNL Check If Date Is In Range";
                 CalculateFinalPrice: Codeunit "RNL CalculatingPriceWithDisc";
                 StartingDateIsGreaterError: Label 'Your starting date is greater than ending date';
                 SouldBeOneDayError: label 'It should be a day at least';
             begin
+                // Если любая дата меньше чем текущая
                 // Если старт и конечная дата не пустые
                 if (rec."Rental Starting Date" <> 0D) and (rec."Rental Ending Date" <> 0D)
                 then begin
-                    // Стартовая дата меньше текущей
-                    if ("Rental Starting Date" < CurrentDate) then begin
+                    if ("Rental Starting Date" < Today()) then begin
                         Error(CannotSelectPastError)
                     end;
+                    if ("Rental Starting Date" < Today()) then begin
+                        Error(CannotSelectPastError)
+                    end;
+                    // Стартовая дата меньше текущей
                     // Старотовая дата больше конечной
                     if ("Rental Ending Date" < "Rental Starting Date") then begin
                         Error(StartingDateIsGreaterError);
@@ -184,9 +188,12 @@ table 50104 "RNL Rental Sales Line"
                         Error(SouldBeOneDayError);
                     end;
 
+
                     CheckingDateMgt.CheckingRange("Doc. No.", "Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
                     "Final Price" := CalculateFinalPrice.CalculateFinalCarPrice("Rental Starting Date", "Rental Ending Date", "Dominant Discount", "Price Per Day");
+
                 end;
+
             end;
 
 
