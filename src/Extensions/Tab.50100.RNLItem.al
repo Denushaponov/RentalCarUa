@@ -32,5 +32,12 @@ tableextension 50100 "RNL Item" extends Item
             ValidateTableRelation = false;
         }
 
+        field(50106; "RNL Availability"; Boolean)
+        {
+            Caption = 'Availability';
+            DataClassification = CustomerContent;
+
+        }
+
     }
 }

@@ -133,8 +133,10 @@ page 50104 "RNL Rental Sales Card"
 
                 trigger OnAction()
                 var
+                    RNLCheckingDates: Codeunit "RNL Check If Date Is In Range";
                     RNLPostRentalSalesOrder: Codeunit "RNL Post Rental Order";
                 begin
+                    RNLCheckingDates.IsValidDateInDocumentToBePosted(Rec."Doc. No.");
                     RNLPostRentalSalesOrder.PostRentalOrder((Rec));
                 end;
             }

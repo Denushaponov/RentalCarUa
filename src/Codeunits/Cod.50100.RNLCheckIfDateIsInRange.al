@@ -169,5 +169,20 @@ codeunit 50100 "RNL Check If Date Is In Range"
             until PostedFilteredOrderLine.Next() = 0;
     end;
 
+    // Процедура проверки перед постингом
+    procedure IsValidDateInDocumentToBePosted(var DocNo: Code[20])
+    var
+        OrderLine: Record "RNL Rental Sales Line";
+        PostedOrderLine: Record "RNL Posted Rental Sales Line";
+    begin
+        // Нужныо прфильтроватть рекорды лфйн в которых док но такой же как в хедере 
+        OrderLine.SetFilter("Doc. No.", '=%1', DocNo);
+        if (OrderLine.FindSet()) then begin
+            repeat
+                CheckingPostedLinesMaybePeriodIsInvalid(DocNo, OrderLine."Item No.", OrderLine."Line No.", OrderLine."Rental Starting Date", OrderLine."Rental Ending Date");
+            until OrderLine.Next() = 0
+        end;
+    end;
+
 
 }
