@@ -79,7 +79,7 @@ page 50104 "RNL Rental Sales Card"
             {
                 ApplicationArea = suite;
                 Provider = SalesLines;
-                SubPageLink = "No." = field("Item No.");
+                SubPageLink = "Item No." = field("Item No.");
             }
         }
     }

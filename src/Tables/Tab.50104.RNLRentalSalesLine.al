@@ -39,6 +39,7 @@ table 50104 "RNL Rental Sales Line"
                     //"Final Price" := 0;
                     "Price Per Day" := ItemRec."RNL Price Per Day";
                     "Discount" := ItemRec."RNL Discount";
+                    Picture := ItemRec.Picture;
 
                     // CheckingDateMgt.CheckingRange("Doc. No.", rec."Item No.", "Line No.", "Rental Starting Date", "Rental Ending Date");
                     "Dominant Discount" := LookingForTheGreatestDisc.GetMaximumDiscountLine("Doc. No.", "Line No.", Discount);
@@ -132,6 +133,19 @@ table 50104 "RNL Rental Sales Line"
                 "Final Price" := FinalPriceCalculation.FinalPriceCalculationAfterValidation(Rec);
             end;
 
+        }
+
+        field(155; Picture; MediaSet)
+        {
+            Caption = 'Picture';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item.Picture WHERE("No." = FIELD("Item No.")));
+        }
+
+        field(156; Availability; Boolean)
+        {
+            Caption = 'Is availible today';
+            DataClassification = CustomerContent;
         }
 
     }
