@@ -137,7 +137,7 @@ page 50104 "RNL Rental Sales Card"
                     RNLPostRentalSalesOrder: Codeunit "RNL Post Rental Order";
                 begin
                     RNLCheckingDates.IsValidDateInDocumentToBePosted(Rec."Doc. No.");
-                    RNLPostRentalSalesOrder.PostRentalOrder((Rec));
+                    RNLPostRentalSalesOrder.PostRentalOrder(Rec);
                 end;
             }
         }

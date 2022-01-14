@@ -171,6 +171,7 @@ codeunit 50100 "RNL Check If Date Is In Range"
     end;
 
     // Процедура проверки перед постингом
+
     procedure IsValidDateInDocumentToBePosted(var DocNo: Code[20])
     var
         OrderLine: Record "RNL Rental Sales Line";

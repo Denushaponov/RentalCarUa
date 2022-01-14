@@ -18,6 +18,7 @@ codeunit 50104 "RNL Post Rental Order"
                 RNLPostedRentalOrderLine.TransferFields(RNLRentalOrderLine);
                 RNLPostedRentalOrderLine.Validate("Doc. No.", RNLPostedRentalSalesHeader."Doc. No.");
                 RNLPostedRentalOrderLine.Insert(true);
+            // RNLPostedRentalOrderLine."Final Price" := RNLRentalOrderLine."Final Price";
             until RNLRentalOrderLine.Next() = 0;
 
         //
