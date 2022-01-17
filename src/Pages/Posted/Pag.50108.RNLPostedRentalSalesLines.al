@@ -39,6 +39,13 @@ page 50108 "RNL Posted Rental Sales Lines"
                     ApplicationArea = All;
                 }
 
+                field("Final Price"; Rec."Final Price")
+                {
+                    ToolTip = 'Final price field.';
+                    ApplicationArea = All;
+
+                }
+
             }
         }
     }

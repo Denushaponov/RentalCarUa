@@ -41,11 +41,7 @@ page 50110 "RNL Posted Rental Sales List"
                     ToolTip = 'Specifies the value of the Salesperson No. field.';
                     ApplicationArea = All;
                 }
-                field("Bill Amount"; Rec."Bill Amount")
-                {
-                    ToolTip = 'Specifies the value of the Bill Amount field.';
-                    ApplicationArea = All;
-                }
+
             }
         }
     }

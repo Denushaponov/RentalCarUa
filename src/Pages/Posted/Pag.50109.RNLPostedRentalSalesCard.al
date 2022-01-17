@@ -45,7 +45,7 @@ page 50109 "RNL Posted Rental Sales Card"
             }
             group("Total amount")
             {
-                field("Bill Amount"; Rec."Bill Amount")
+                field("Bill Amount"; Rec."Bill Amount Flowfield")
                 {
                     ToolTip = 'Specifies the value of the Bill Amount field.';
                     ApplicationArea = All;

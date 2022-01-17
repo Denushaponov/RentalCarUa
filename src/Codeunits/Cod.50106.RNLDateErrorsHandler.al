@@ -16,6 +16,7 @@ codeunit 50106 "RNL Date Errors Handler"
 
         // Стартовая дата меньше текущей
         if (ListRecord."Rental Starting Date" < Today()) then begin
+
             Error(CannotSelectPastError)
         end;
         if (ListRecord."Rental Ending Date" < Today()) then begin

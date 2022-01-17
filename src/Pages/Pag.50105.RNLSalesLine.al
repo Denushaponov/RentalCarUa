@@ -97,12 +97,18 @@ page 50105 "RNL Sales Line"
                 {
                     ToolTip = 'Specifies the value of the Final Car Price field';
                     ApplicationArea = All;
-                    trigger OnValidate()
-                    var
 
-                    begin
-                        CurrPage.Update();
-                    end;
+                }
+            }
+
+            group(TotalPrice)
+            {
+                field(Bill; Rec.Bill)
+                {
+                    ToolTip = '';
+                    ApplicationArea = all;
+                    Editable = false;
+
                 }
             }
 
@@ -110,4 +116,8 @@ page 50105 "RNL Sales Line"
 
     }
 
+
+
 }
+
+

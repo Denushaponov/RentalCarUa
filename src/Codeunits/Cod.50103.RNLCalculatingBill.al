@@ -16,7 +16,7 @@ codeunit 50103 "RNL Calculating Bill"
             until RentalOrderlines.Next() = 0;
         RentalHeaderRec.SetRange("Doc. No.", DocumentNo);
         RentalHeaderRec.FindFirst();
-        RentalHeaderRec."Bill Amount" := BillAmount;
+        RentalHeaderRec."Bill Amount Flowfield" := BillAmount;
     end;
 
     procedure CalculateField(var DocumentNo: Code[20]) ReturnValue: Decimal

@@ -12,7 +12,7 @@ report 50100 "RNL Availible Cars"
     {
         dataitem(Item; Item)
         {
-            RequestFilterFields = "No.", "Type";
+            RequestFilterFields = "Type";
             column(No; "No.")
             {
                 IncludeCaption = true;

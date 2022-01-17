@@ -107,6 +107,7 @@ table 50104 "RNL Rental Sales Line"
             Caption = 'Specifies final price';
             Editable = false;
             DataClassification = CustomerContent;
+
         }
 
         field(100; "Rental Starting Date"; Date)
@@ -148,6 +149,12 @@ table 50104 "RNL Rental Sales Line"
             DataClassification = CustomerContent;
         }
 
+        field(170; Bill; Decimal)
+        {
+            Caption = 'Final bill';
+            DataClassification = CustomerContent;
+        }
+
     }
     keys
     {
@@ -172,6 +179,15 @@ table 50104 "RNL Rental Sales Line"
             "Line No." := recSalesLine."Line No." + 10
         else
             "Line No." := 10;
+    end;
+
+    trigger OnModify()
+
+    var
+        BillCalculate: Codeunit "RNL CalcBill";
+    begin
+        if ("Final Price" <> xRec."Final Price") then
+            Bill := BillCalculate.CalcBill("Doc. No.", "Line No.", "Final Price");
     end;
 
 

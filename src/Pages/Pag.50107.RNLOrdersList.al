@@ -35,7 +35,7 @@ page 50107 "RNL Orders List"
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
                 }
-                field("Bill Amount"; Rec."Bill Amount")
+                field("Bill Amount"; Rec."Bill Amount Flowfield")
                 {
                     ToolTip = 'Specifies the value of the Bill Amount field.';
                     ApplicationArea = All;
