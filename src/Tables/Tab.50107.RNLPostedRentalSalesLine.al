@@ -9,7 +9,6 @@ table 50107 "RNL Posted Rental Sales Line"
         {
             Caption = 'Doc. No.';
             DataClassification = CustomerContent;
-            TableRelation = "RNL Posted Rental Sales Header"."Doc. No.";
         }
         field(2; "Line No."; Integer)
         {
@@ -20,42 +19,105 @@ table 50107 "RNL Posted Rental Sales Line"
         {
             Caption = 'Item No.';
             DataClassification = CustomerContent;
-        }
+            // TableRelation = Item where(Type = filter(Car));
 
+
+        }
         field(4; "Car Model"; Text[50])
         {
             Caption = 'Car Model';
-            DataClassification = CustomerContent;
+            Editable = false;
+            // Добавить логику заполнения поля модели
+            FieldClass = FlowField;
+            //  CalcFormula = Lookup(Item."RNL Model" WHERE("No." = FIELD("Item No.")));
         }
 
 
         field(15; Color; Enum "RNL Car Colors")
         {
             Caption = 'Car Color';
-            DataClassification = CustomerContent;
+            Editable = false;
+            // Добавить логику заполнения поля модели
+            FieldClass = FlowField;
+            //  CalcFormula = Lookup(Item."RNL Color" WHERE("No." = FIELD("Item No.")));
         }
         field(20; Mileage; Integer)
         {
             Caption = 'Car Mileage';
+            Editable = false;
+            // Добавить логику заполнения поля модели
+            FieldClass = FlowField;
+            //  CalcFormula = Lookup(Item."RNL Mileage" WHERE("No." = FIELD("Item No.")));
         }
+
+        field(25; "Price Per Day"; Decimal)
+        {
+            Caption = 'Specifies Price Per Day field';
+            Editable = false;
+            DataClassification = CustomerContent;
+            // FieldClass =FlowField;
+            // CalcFormula=lookup(Item."RNL Price Per Day" where ("No."=field("Item No.")));
+
+        }
+
+        field(50; Discount; Decimal)
+        {
+            Caption = 'Specifies selected car discount';
+            Editable = false;
+            DataClassification = CustomerContent;
+
+        }
+
+        field(60; "Dominant Discount"; Decimal)
+        {
+            Caption = 'Specifies dominant discount field';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+
+
+
+        field(75; "Final Price"; Decimal)
+        {
+            Caption = 'Specifies final price';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+
 
 
         field(100; "Rental Starting Date"; Date)
         {
-            Caption = 'The Date when renting starts';
+
+            Caption = 'Specifies Rental Starting Date field';
             DataClassification = CustomerContent;
+
         }
 
         field(150; "Rental Ending Date"; Date)
         {
-            Caption = 'The Date when renting ends';
+            Caption = 'Rental ending date';
+            DataClassification = CustomerContent;
+
+
+        }
+
+        field(155; Picture; MediaSet)
+        {
+            Caption = 'Picture';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item.Picture WHERE("No." = FIELD("Item No.")));
+        }
+
+        field(156; Availability; Boolean)
+        {
+            Caption = 'Is availible today';
             DataClassification = CustomerContent;
         }
 
-        field(160; "Final Price"; Decimal)
+        field(170; Bill; Decimal)
         {
-            Caption = 'Price including car discount';
-            Editable = false;
+            Caption = 'Final bill';
             DataClassification = CustomerContent;
         }
 
@@ -67,6 +129,23 @@ table 50107 "RNL Posted Rental Sales Line"
             Clustered = true;
         }
     }
+
+
+
+
+    trigger OnInsert()
+    var
+        recSalesLine: Record "RNL Rental Sales Line";
+    begin
+        // Очистить
+        Clear(recSalesLine);
+        // Если если нашли последний
+        IF recSalesLine.FindLast() then
+            // То присваимваем инкрементированый номер
+            "Line No." := recSalesLine."Line No." + 10
+        else
+            "Line No." := 10;
+    end;
 
 
 }

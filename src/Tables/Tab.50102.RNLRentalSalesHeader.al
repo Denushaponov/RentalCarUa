@@ -48,7 +48,7 @@ table 50102 "RNL Rental Sales Header"
                     Customer.FindFirst();
                     Discount := Customer."RNL Discount";
                 end;
-                "Bill Amount" := CalcBill.CalculateField("Doc. No.");
+                "Bill Amount Flowfield" := CalcBill.CalculateField("Doc. No.");
 
 
 
@@ -81,19 +81,18 @@ table 50102 "RNL Rental Sales Header"
 
         }
 
-        field(75; "Bill Amount"; Decimal)
+        field(75; "Bill Amount Flowfield"; Decimal)
         {
             Caption = 'Bill Amount';
             Editable = false;
             FieldClass = FlowField;
+
             CalcFormula = sum("RNL Rental Sales Line"."Final Price" where("Doc. No." = field("Doc. No.")));
-        }
-
-        field(77; "Ghgh"; Decimal)
-        {
-
 
         }
+
+
+
 
         field(100; "No. Series"; Code[20])
         {
