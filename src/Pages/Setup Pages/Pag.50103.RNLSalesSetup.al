@@ -21,6 +21,13 @@ page 50103 "RNL Sales Setup"
                     ToolTip = 'Specifies the value of the Sales Nos. field.';
                     ApplicationArea = All;
                 }
+                field("Posted Sales Nos."; Rec."Posted Sales Nos.")
+                {
+                    ToolTip = 'Specifies the value of the Posted Sales Nos. field.';
+                    ApplicationArea = All;
+                }
+
+
             }
             group(Posting)
             {

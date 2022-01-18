@@ -133,19 +133,4 @@ table 50107 "RNL Posted Rental Sales Line"
 
 
 
-    trigger OnInsert()
-    var
-        recSalesLine: Record "RNL Rental Sales Line";
-    begin
-        // Очистить
-        Clear(recSalesLine);
-        // Если если нашли последний
-        IF recSalesLine.FindLast() then
-            // То присваимваем инкрементированый номер
-            "Line No." := recSalesLine."Line No." + 10
-        else
-            "Line No." := 10;
-    end;
-
-
 }

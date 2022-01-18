@@ -16,6 +16,13 @@ table 50103 "RNL Sales Setup"
             DataClassification = CustomerContent;
             TableRelation = "No. Series";
         }
+
+        field(3; "Posted Sales Nos."; Code[20])
+        {
+            Caption = 'Posted Sales Nos.';
+            DataClassification = CustomerContent;
+            TableRelation = "No. Series";
+        }
         field(10; "Post. Jnl. Template Name"; Code[10])
         {
             Caption = 'Leasing Postings Journal Template Name';

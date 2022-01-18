@@ -19,10 +19,10 @@ table 50106 "RNL Posted Rental Sales Header"
                     // Берём рекорд из Sales Setup
                     SalesSetup.Get();
                     // Проверяем как добавили этот номер, если он добавлен вручную, а не через сетап то ошибка
-                    NoSeriesMgmt.TestManual((SalesSetup."Sales Nos."));
+                    NoSeriesMgmt.TestManual((SalesSetup."Posted Sales Nos."));
                     // ставим Блэнк
                     "No. Series" := '';
-                    "Order Date" := WorkDate();
+                    "Order Date" := Today();
                 end;
             end;
         }
@@ -37,26 +37,7 @@ table 50106 "RNL Posted Rental Sales Header"
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
             TableRelation = Customer;
-            trigger OnValidate()
-            var
-                Customer: Record "Customer";
-                TheBiggestDicLookup: Codeunit "RNL Looking For Maximum Disc";
-                RentalSalesLine: Record "RNL Rental Sales Line";
-                //
-                CalcBill: Codeunit "RNL Calculating Bill";
-            begin
-                if ("Customer No." <> xRec."Customer No.") then begin
 
-                    Customer.SetRange("No.", "Customer No.");
-                    Customer.FindFirst();
-                    Discount := Customer."RNL Discount";
-                end;
-                "Bill Amount Flowfield" := CalcBill.CalculateField("Doc. No.");
-
-
-
-
-            end;
         }
 
 
@@ -123,9 +104,9 @@ table 50106 "RNL Posted Rental Sales Header"
             // Берём запись из Sales Setup
             SalesSetup.Get();
             // Проверяем поле
-            SalesSetup.TestField("Sales Nos.");
+            SalesSetup.TestField("Posted Sales Nos.");
             // Sends the next number from No series to field No
-            NoSeriesMgmt.InitSeries(SalesSetup."Sales Nos.", xRec."Doc. No.", 0D, Rec."Doc. No.", Rec."No. Series");
+            NoSeriesMgmt.InitSeries(SalesSetup."Posted Sales Nos.", xRec."Doc. No.", 0D, Rec."Doc. No.", Rec."No. Series");
             "Order Date" := Today();
         end;
     end;
