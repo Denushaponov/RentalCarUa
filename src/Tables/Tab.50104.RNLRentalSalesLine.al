@@ -77,7 +77,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(25; "Price Per Day"; Decimal)
         {
-            Caption = 'Specifies Price Per Day field';
+            Caption = 'Price Per Day';
             Editable = false;
             DataClassification = CustomerContent;
             // FieldClass =FlowField;
@@ -87,7 +87,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(50; Discount; Decimal)
         {
-            Caption = 'Specifies selected car discount';
+            Caption = 'Car discount';
             Editable = false;
             DataClassification = CustomerContent;
 
@@ -95,7 +95,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(60; "Dominant Discount"; Decimal)
         {
-            Caption = 'Specifies dominant discount field';
+            Caption = 'Dominant discount';
             Editable = false;
             DataClassification = CustomerContent;
         }
@@ -104,7 +104,7 @@ table 50104 "RNL Rental Sales Line"
 
         field(75; "Final Price"; Decimal)
         {
-            Caption = 'Specifies final price';
+            Caption = 'Final price';
             Editable = false;
             DataClassification = CustomerContent;
 
@@ -113,7 +113,7 @@ table 50104 "RNL Rental Sales Line"
         field(100; "Rental Starting Date"; Date)
         {
 
-            Caption = 'Specifies Rental Starting Date field';
+            Caption = 'Rental Starting Date';
             DataClassification = CustomerContent;
             trigger OnValidate()
             var

@@ -105,7 +105,7 @@ page 50105 "RNL Sales Line"
             {
                 field(Bill; Rec.Bill)
                 {
-                    ToolTip = '';
+                    ToolTip = 'Final price of an order';
                     ApplicationArea = all;
                     Editable = false;
 

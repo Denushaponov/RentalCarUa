@@ -70,7 +70,7 @@ table 50102 "RNL Rental Sales Header"
         {
             Caption = 'Customer Discount';
             DataClassification = CustomerContent;
-
+            TableRelation = "RNL Discount".Percent where(Type = const(Customer));
         }
 
         field(50; "Order Date"; Date)

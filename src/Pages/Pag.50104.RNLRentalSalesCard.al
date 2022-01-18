@@ -61,19 +61,7 @@ page 50104 "RNL Rental Sales Card"
                 UpdatePropagation = Both;
 
             }
-            group("Total Amount")
-            {
 
-                field("Bill Amount Flowfield"; Rec."Bill Amount Flowfield")
-                {
-                    ApplicationArea = all;
-                    Editable = false;
-                    Caption = 'Shows final bill';
-
-                }
-
-
-            }
         }
 
         area(FactBoxes)

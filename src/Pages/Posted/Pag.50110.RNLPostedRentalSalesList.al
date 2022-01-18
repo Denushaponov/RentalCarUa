@@ -42,6 +42,12 @@ page 50110 "RNL Posted Rental Sales List"
                     ApplicationArea = All;
                 }
 
+                field("Bill Amount"; Rec."Bill Amount Flowfield")
+                {
+                    ToolTip = 'Specifies the value of the Bill Amount field.';
+                    ApplicationArea = All;
+                }
+
             }
         }
     }

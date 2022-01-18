@@ -12,11 +12,7 @@ page 50108 "RNL Posted Rental Sales Lines"
         {
             repeater(General)
             {
-                field("Doc. No."; Rec."Doc. No.")
-                {
-                    ToolTip = 'Specifies the value of the Doc. No. field.';
-                    ApplicationArea = All;
-                }
+
                 field("Line No."; Rec."Line No.")
                 {
                     ToolTip = 'Specifies the value of the Line No. field.';
@@ -41,11 +37,21 @@ page 50108 "RNL Posted Rental Sales Lines"
 
                 field("Final Price"; Rec."Final Price")
                 {
-                    ToolTip = 'Final price field.';
+                    ToolTip = 'Final rental car price field.';
                     ApplicationArea = All;
 
                 }
 
+            }
+            group(TotalPrice)
+            {
+                field(Bill; Rec.Bill)
+                {
+                    ToolTip = 'Final price of an order';
+                    ApplicationArea = all;
+                    Editable = false;
+
+                }
             }
         }
     }

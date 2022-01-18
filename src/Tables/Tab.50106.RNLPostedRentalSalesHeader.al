@@ -70,6 +70,7 @@ table 50106 "RNL Posted Rental Sales Header"
             Caption = 'Bill Amount';
             Editable = false;
             FieldClass = FlowField;
+            CalcFormula = lookup("RNL Posted Rental Sales Line".Bill where("Doc. No." = field("Doc. No.")));
         }
 
 
