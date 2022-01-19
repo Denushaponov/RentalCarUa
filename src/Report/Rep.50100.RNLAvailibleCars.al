@@ -12,6 +12,8 @@ report 50100 "RNL Availible Cars"
     {
         dataitem(Item; Item)
         {
+            DataItemTableView = sorting(Type) where(Type = filter(Car));
+
             RequestFilterFields = "Type";
             column(No; "No.")
             {
@@ -37,13 +39,61 @@ report 50100 "RNL Availible Cars"
             {
                 IncludeCaption = true;
             }
+            column(Description; "Description")
+            {
+                IncludeCaption = true;
+            }
             column(RNLPricePerDay; "RNL Price Per Day")
             {
                 IncludeCaption = true;
             }
+
+            trigger OnAfterGetRecord()
+            var
+                CheckToSkip: Codeunit "CheckDatesInReport";
+            begin
+                if (CheckToSkip.CheckingPostedLinesMaybePeriodIsInvalid("No.", UserStartingDate, UserEndingDate))
+                then begin
+                    CurrReport.Skip();
+                end;
+            end;
         }
     }
 
+    requestpage
+    {
+        SaveValues = true;
+        layout
+        {
+            area(Content)
+            {
+                group(Options)
+                {
+                    Caption = 'Options';
+                    field(UserStartingDate; UserStartingDate)
+                    {
+                        ApplicationArea = all;
+                        Caption = 'User Starting Date';
+                        ToolTip = 'Specifies User Starting Date';
+
+                    }
+                    field(UserEndingDate; UserEndingDate)
+                    {
+                        ApplicationArea = all;
+                        Caption = 'User Ending Date';
+                        ToolTip = 'Specifies User Ending Date';
+
+                    }
+
+                }
+            }
+        }
+    }
+
+
+    var
+        UserStartingDate: Date;
+        UserEndingDate: Date;
 
 
 }

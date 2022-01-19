@@ -77,6 +77,15 @@
       </DefaultValue>
       <Prompt>RNLModelCaption</Prompt>
     </ReportParameter>
+    <ReportParameter Name="DescriptionCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>DescriptionCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>DescriptionCaption</Prompt>
+    </ReportParameter>
     <ReportParameter Name="RNLPricePerDayCaption">
       <DataType>String</DataType>
       <DefaultValue>
@@ -149,6 +158,9 @@ End Function
         </Field>
         <Field Name="RNLModel">
           <DataField>RNLModel</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
         </Field>
         <Field Name="RNLPricePerDay">
           <DataField>RNLPricePerDay</DataField>
