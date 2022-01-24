@@ -48,6 +48,8 @@ report 50100 "RNL Availible Cars"
                 IncludeCaption = true;
             }
 
+
+
             trigger OnAfterGetRecord()
             var
                 CheckToSkip: Codeunit "CheckDatesInReport";
@@ -58,6 +60,8 @@ report 50100 "RNL Availible Cars"
                 end;
             end;
         }
+
+
     }
 
     requestpage
@@ -82,7 +86,6 @@ report 50100 "RNL Availible Cars"
                         ApplicationArea = all;
                         Caption = 'User Ending Date';
                         ToolTip = 'Specifies User Ending Date';
-
                     }
 
                 }
@@ -94,6 +97,7 @@ report 50100 "RNL Availible Cars"
     var
         UserStartingDate: Date;
         UserEndingDate: Date;
+        MyInt: Decimal;
 
 
 }

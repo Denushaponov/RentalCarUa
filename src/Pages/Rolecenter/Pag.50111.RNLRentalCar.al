@@ -109,6 +109,20 @@ page 50111 "RNL Rental Car"
                 ToolTip = 'Creates all cars report';
                 Caption = 'All cars report';
             }
+            action(CarProfit)
+            {
+                ApplicationArea = all;
+                RunObject = report "RNL Car Profit";
+                ToolTip = 'Profit by car';
+                Caption = 'Profit by car';
+            }
+            action(CustProfit)
+            {
+                ApplicationArea = all;
+                RunObject = report "RNL Customer Profit";
+                ToolTip = 'Profit by car';
+                Caption = 'Profit by car';
+            }
         }
     }
 }
