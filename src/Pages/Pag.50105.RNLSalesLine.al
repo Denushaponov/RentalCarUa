@@ -100,7 +100,6 @@ page 50105 "RNL Sales Line"
 
                 }
             }
-
             group(TotalPrice)
             {
                 field(Bill; Rec.Bill)
@@ -111,13 +110,8 @@ page 50105 "RNL Sales Line"
 
                 }
             }
-
         }
-
     }
-
-
-
 }
 
 

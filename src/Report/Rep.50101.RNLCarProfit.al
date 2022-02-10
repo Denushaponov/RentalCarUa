@@ -55,8 +55,10 @@ report 50101 "RNL Car Profit"
             var
                 myInt: Integer;
             begin
-
-                Item.SetFilter("No.", ItemNo);
+                // Если пользватель внес ItemNo
+                if not (ItemNo = '') then begin
+                    Item.SetFilter("No.", ItemNo);
+                end;
 
             end;
 
@@ -64,14 +66,33 @@ report 50101 "RNL Car Profit"
             trigger OnAfterGetRecord()
             var
                 PostedLines: Record "RNL Posted Rental Sales Line";
+                CurrentNo: Code[20];
             begin
+                // Если польз не внес
+                if (ItemNo = '') then begin
+                    CurrentNo := "No.";
+                    PostedLines.SetFilter("Item No.", CurrentNo);
+                    TimesInOrder := 0;
+                    ProfitByCar := 0;
+                    if (PostedLines.FindSet()) then begin
+                        repeat
+                            ProfitByCar += PostedLines."Final Price";
+                            TimesInOrder += 1;
+                        until PostedLines.Next() = 0;
+                    end;
+                end;
 
-                PostedLines.SetFilter("Item No.", ItemNo);
-                if (PostedLines.FindSet()) then begin
-                    TimesInOrder := PostedLines.Count();
-                    repeat
-                        ProfitByCar += PostedLines."Final Price";
-                    until PostedLines.Next() = 0;
+                // Если пользватель внес ItemNo
+                if not (ItemNo = '') then begin
+                    PostedLines.SetFilter("Item No.", ItemNo);
+                    if (PostedLines.FindSet()) then begin
+                        TimesInOrder := 0;
+                        ProfitByCar := 0;
+                        repeat
+                            ProfitByCar += PostedLines."Final Price";
+                            TimesInOrder += 1;
+                        until PostedLines.Next() = 0;
+                    end;
 
                 end;
             end;

@@ -120,8 +120,8 @@ page 50111 "RNL Rental Car"
             {
                 ApplicationArea = all;
                 RunObject = report "RNL Customer Profit";
-                ToolTip = 'Profit by car';
-                Caption = 'Profit by car';
+                ToolTip = 'Customer Profit';
+                Caption = 'Customer Profit';
             }
         }
     }
