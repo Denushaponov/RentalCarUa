@@ -411,36 +411,6 @@
                                 </Border>
                               </Style>
                             </Line>
-                            <Textbox Name="ProfitGeneralTotal">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=First(Fields!ProfitGeneralTotal.Value)</Value>
-                                      <Style />
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style />
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>ProfitGeneralTotal</rd:DefaultName>
-                              <Top>3.83747cm</Top>
-                              <Left>12.8688cm</Left>
-                              <Height>0.6cm</Height>
-                              <Width>2.5cm</Width>
-                              <ZIndex>7</ZIndex>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <ZIndex>1</ZIndex>
@@ -450,7 +420,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -462,65 +431,6 @@
                       <CellContents>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
-                            <Textbox Name="ProfitGeneralTotal1">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=SUM(Fields!ProfitGeneralTotal.Value)</Value>
-                                      <Style />
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style />
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>ProfitGeneralTotal1</rd:DefaultName>
-                              <Top>1.31923cm</Top>
-                              <Left>9.17787cm</Left>
-                              <Height>0.6cm</Height>
-                              <Width>2.5cm</Width>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                            <Textbox Name="ProfitTotalByCustomerCaption">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=First(Fields!ProfitTotalByCustomerCaption.Value)</Value>
-                                      <Style />
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style />
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>ProfitTotalByCustomerCaption</rd:DefaultName>
-                              <Top>1.31923cm</Top>
-                              <Left>6.16162cm</Left>
-                              <Height>0.6cm</Height>
-                              <Width>2.5cm</Width>
-                              <ZIndex>1</ZIndex>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
                             <Textbox Name="ProfitGeneralTotal2">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
@@ -540,7 +450,6 @@
                               <Left>12.48278cm</Left>
                               <Height>0.6cm</Height>
                               <Width>2.5cm</Width>
-                              <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -570,7 +479,7 @@
                               <Left>15.97528cm</Left>
                               <Height>0.6cm</Height>
                               <Width>2.5cm</Width>
-                              <ZIndex>3</ZIndex>
+                              <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -589,6 +498,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
